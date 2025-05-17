@@ -1,0 +1,33 @@
+# Virtual environment
+.venv/
+
+# Bytecode and Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Logs and outputs
+*.log
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Data files
+data/
+*.csv
+*.parquet
+
+# Environment & config
+.env
+
+# Test output
+coverage/
+htmlcov/
+
+# VSCode or PyCharm configs
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
