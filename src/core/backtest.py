@@ -4,10 +4,12 @@ from core.data_loader import download_data
 from core.calc_spread import calculate_spread_and_thresholds
 from core.pair_selector import select_pairs
 
-def backtest_pair(price_a: pd.Series, price_b: pd.Series, entry_z: float = 2.0, exit_z: float = 0.0):
+
+def backtest_pair(
+    price_a: pd.Series, price_b: pd.Series, entry_z: float = 2.0, exit_z: float = 0.0
+):
     result = calculate_spread_and_thresholds(price_a, price_b)
     zscore = result["zscore"]
-    spread = result["spread"]
 
     position = 0  # 0 = no position, 1 = long spread, -1 = short spread
     entry_price_a = entry_price_b = 0.0
@@ -48,6 +50,7 @@ def backtest_pair(price_a: pd.Series, price_b: pd.Series, entry_z: float = 2.0, 
     if trades:
         print(f"Avg PnL per Trade: {pnl / len(trades):.2f}")
         print(f"Win Rate: {sum(1 for t in trades if t > 0) / len(trades) * 100:.2f}%")
+
 
 if __name__ == "__main__":
     tickers = load_tickers()
