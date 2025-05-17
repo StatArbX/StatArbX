@@ -13,6 +13,7 @@ run:
 	@echo "Nothing to run yet. Add your entry point to run this."
 
 test:
+	black .
 	PYTHONPATH=src $(PYTHON) -m pytest tests/
 
 freeze:
