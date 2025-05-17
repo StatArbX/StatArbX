@@ -1,4 +1,4 @@
-.PHONY: setup run test freeze clean
+.PHONY: setup run test freeze clean backtest
 
 PYTHON := .venv/bin/python
 PIP := .venv/bin/pip
@@ -16,6 +16,9 @@ test:
 	black .
 	ruff check . --fix
 	PYTHONPATH=src $(PYTHON) -m pytest tests/
+
+backtest:
+	PYTHONPATH=src $(PYTHON) src/core/backtest.py
 
 freeze:
 	$(PIP) freeze > requirements.txt
