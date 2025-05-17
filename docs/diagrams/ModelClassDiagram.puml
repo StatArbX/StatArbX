@@ -1,0 +1,51 @@
+@startuml MVP Class Diagram
+
+' ======= Classes =======
+class DataLoader {
+  +load_tickers() : List[str]
+  +download_data(tickers: List[str], start_date: str, end_date: str) : DataFrame
+}
+
+class PairSelector {
+  +select_pairs(price_df: DataFrame) : List<Pair>
+}
+
+class SpreadCalculator {
+  +calculate_spread(price1: Series, price2: Series) : Series
+  +calculate_zscore(spread: Series) : Series
+}
+
+class SignalEngine {
+  +generate_signals(zscore_series: Series) : List<TradeSignal>
+}
+
+class TradeSignal {
+  -timestamp: datetime
+  -action: str  <<buy/sell/close>>
+  -quantity: float
+}
+
+class Backtester {
+  +backtest(pair: Tuple, signals: List<TradeSignal>, price_data: DataFrame) : BacktestResult
+}
+
+class BacktestResult {
+  -total_return: float
+  -sharpe_ratio: float
+  -max_drawdown: float
+}
+
+class Runner {
+  +run_strategy()
+}
+
+' ======= Relationships =======
+DataLoader --> Runner
+PairSelector --> Runner
+SpreadCalculator --> Runner
+SignalEngine --> Runner
+Backtester --> Runner
+TradeSignal --> SignalEngine
+BacktestResult --> Backtester
+
+@enduml
