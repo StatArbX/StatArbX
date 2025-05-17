@@ -1,7 +1,6 @@
 import pandas as pd
 from statsmodels.tsa.stattools import coint
 from typing import List, Tuple
-from core.data_loader import download_data
 
 
 def select_pairs(

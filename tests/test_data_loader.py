@@ -1,5 +1,3 @@
-import os
-import pytest
 import pandas as pd
 from core.data_loader import load_tickers, download_data
 
