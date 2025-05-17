@@ -1,5 +1,3 @@
-import pytest
-import pandas as pd
 from core.pair_selector import select_pairs
 from core.data_loader import download_data
 
