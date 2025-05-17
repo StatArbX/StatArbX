@@ -3,34 +3,33 @@ import pandas as pd
 import statsmodels.api as sm
 from typing import Dict, Any
 
-def calculate_spread_and_thresholds(price_a: pd.Series, price_b: pd.Series) -> Dict[str, Any]:
-    """
-    Calculate the spread between two price series using linear regression to determine the hedge ratio (beta),
-    and compute mean, standard deviation, and z-score thresholds for trading.
 
-    Args:
-        price_a (pd.Series): Price series of stock A.
-        price_b (pd.Series): Price series of stock B.
+def calculate_spread_and_thresholds(
+    price_a: pd.Series, price_b: pd.Series
+) -> Dict[str, Any]:
+    import pandas as pd
 
-    Returns:
-        dict: Dictionary containing spread, mean, std, zscore series, and thresholds.
-    """
-    # Step 1: Regress A on B to get hedge ratio (beta)
+    # Combine series and drop NaNs
     X = sm.add_constant(price_b)
-    model = sm.OLS(price_a, X).fit()
-    beta = model.params.iloc[1]
+    df = pd.concat([price_a, X], axis=1).dropna()
+    y = df.iloc[:, 0]
+    X = df.iloc[:, 1:]
 
-    # Step 2: Calculate spread using hedge ratio
-    spread = price_a - beta * price_b
+    # Run regression
+    model = sm.OLS(y, X).fit()
+    beta = model.params.iloc[0]  # since we dropped const, beta is now at index 0
 
-    # Step 3: Compute mean and standard deviation of spread
+    # Use aligned index to compute spread
+    aligned_price_a = price_a.loc[df.index]
+    aligned_price_b = price_b.loc[df.index]
+    spread = aligned_price_a - beta * aligned_price_b
+
+    # Stats
     mean = spread.mean()
     std = spread.std()
+    zscore = (spread - mean) / std
 
-    # Step 4: Compute z-score to normalize spread
-    zscore = (spread - mean) / std  # type: ignore
-
-    # Step 5: Define default thresholds for trading signals
+    # Thresholds
     entry_threshold = 2.0
     exit_threshold = 0.0
 
@@ -41,5 +40,5 @@ def calculate_spread_and_thresholds(price_a: pd.Series, price_b: pd.Series) -> D
         "std": std,
         "entry_threshold": entry_threshold,
         "exit_threshold": exit_threshold,
-        "beta": beta
+        "beta": beta,
     }
