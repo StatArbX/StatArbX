@@ -77,6 +77,26 @@ make run
 
 ---
 
+## 🧪 Running Backtesting
+```bash
+make backtest
+```
+
+This will:
+
+* Load tickers from data/tickers.txt
+* Download historical stock data using yfinance
+* Select statistically cointegrated pairs
+* Simulate trades based on z-score thresholds
+* Output metrics like:
+   * Number of trades
+   * Total PnL
+   * Win rate		
+
+Make sure you have a valid tickers.txt file inside the data/ folder with one ticker per line.
+
+---
+
 ## 🧪 Running Tests
 
 ```bash
