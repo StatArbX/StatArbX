@@ -14,6 +14,7 @@ run:
 
 test:
 	black .
+	ruff check . --fix
 	PYTHONPATH=src $(PYTHON) -m pytest tests/
 
 freeze:
