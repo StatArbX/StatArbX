@@ -16,7 +16,9 @@ def backtest_pair(
     trades = []
     pnl = 0.0
 
-    for date in zscore.index: # Assume we long-short only one share of each (to revisit)
+    for (
+        date
+    ) in zscore.index:  # Assume we long-short only one share of each (to revisit)
         z = zscore.loc[date]
         pa = price_a.loc[date]
         pb = price_b.loc[date]

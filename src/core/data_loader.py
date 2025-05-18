@@ -15,7 +15,9 @@ def load_tickers(path: str = "data/tickers.txt") -> List[str]:
     return tickers
 
 
-def download_data(tickers: List[str], start_date: str, end_date: str, use_cache: bool = True) -> pd.DataFrame:
+def download_data(
+    tickers: List[str], start_date: str, end_date: str, use_cache: bool = True
+) -> pd.DataFrame:
     start_year = pd.to_datetime(start_date).year
     end_year = pd.to_datetime(end_date).year
     filename = f"tickers_{start_year}_{end_year}.csv"
@@ -23,25 +25,20 @@ def download_data(tickers: List[str], start_date: str, end_date: str, use_cache:
 
     if use_cache and os.path.exists(data_path):
         print(f"[CACHE HIT] Loading data from cache: {data_path}")
-        data = pd.read_csv(
-            data_path,
-            header=[0, 1],
-            index_col=0,
-            parse_dates=[0]
-        )
+        data = pd.read_csv(data_path, header=[0, 1], index_col=0, parse_dates=[0])
         return data
 
-    print(f"[CACHE MISS] Downloading data for {len(tickers)} tickers from Yahoo Finance...")
+    print(
+        f"[CACHE MISS] Downloading data for {len(tickers)} tickers from Yahoo Finance..."
+    )
     data = yf.download(
-        tickers,
-        start=start_date,
-        end=end_date,
-        auto_adjust=False,
-        progress=False
+        tickers, start=start_date, end=end_date, auto_adjust=False, progress=False
     )
 
     if not isinstance(data.columns, pd.MultiIndex):
-        data.columns = pd.MultiIndex.from_product([tickers, data.columns], names=["Ticker", "PriceType"])
+        data.columns = pd.MultiIndex.from_product(
+            [tickers, data.columns], names=["Ticker", "PriceType"]
+        )
     else:
         data.columns.names = ["Ticker", "PriceType"]
 
