@@ -10,7 +10,7 @@ setup:
 	$(PIP) install -e .
 
 run:
-	@echo "Nothing to run yet. Add your entry point to run this."
+	python3 -m src.core.backtest	
 
 test:
 	black .
