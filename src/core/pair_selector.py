@@ -13,7 +13,7 @@ def select_pairs(
     corr_threshold: float = 0.6,
     max_pairs: int = 10,
     pval_cutoff: float = 0.05,
-    use_cache: bool = True
+    use_cache: bool = True,
 ) -> List[Tuple[str, str, float]]:
     tickers = list(price_df.columns)
     returns = price_df.pct_change().dropna()
@@ -27,7 +27,7 @@ def select_pairs(
         print(f"[CACHE HIT] Loading cointegration scores from {CACHE_FILE}")
         cache_df = pd.read_csv(CACHE_FILE)
     else:
-        print(f"[CACHE MISS] Recomputing cointegration scores")
+        print("[CACHE MISS] Recomputing cointegration scores")
 
     # To write new cache
     new_cache = []
