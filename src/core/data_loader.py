@@ -51,5 +51,5 @@ def download_data(
 
 if __name__ == "__main__":
     tickers = load_tickers()
-    df = download_data(tickers, "2021-01-01", "2024-01-01", 3)
+    df = download_data(tickers, "2021-01-01", "2024-01-01", True)
     print(df)
