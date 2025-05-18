@@ -7,6 +7,27 @@ from typing import Dict, Any
 def calculate_spread_and_thresholds(
     price_a: pd.Series, price_b: pd.Series
 ) -> Dict[str, Any]:
+    """
+    Calculate the spread and associated statistical thresholds between two price series.
+
+    This function performs a linear regression of `price_a` on `price_b` to compute the spread,
+    calculates its mean and standard deviation, and determines z-scores and thresholds for
+    entry and exit signals in a trading strategy.
+
+    Args:
+        price_a (pd.Series): The first price series (dependent variable).
+        price_b (pd.Series): The second price series (independent variable).
+
+    Returns:
+        Dict[str, Any]: A dictionary containing the following keys:
+            - "spread" (pd.Series): The calculated spread.
+            - "zscore" (pd.Series): The z-scores of the spread.
+            - "mean" (float): The mean of the spread.
+            - "std" (float): The standard deviation of the spread.
+            - "entry_threshold" (float): The z-score threshold for entering a trade.
+            - "exit_threshold" (float): The z-score threshold for exiting a trade.
+            - "beta" (float): The regression coefficient (beta) of `price_b`.
+    """
     import pandas as pd
 
     # Combine series and drop NaNs
