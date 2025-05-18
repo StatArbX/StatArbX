@@ -2,6 +2,7 @@ from core.data_loader import load_tickers, download_data
 from core.pair_selector import select_pairs
 from core.backtest import backtest_pair
 
+
 def main():
     tickers = load_tickers()
     df = download_data(tickers, "2021-01-01", "2024-01-01")
@@ -19,6 +20,7 @@ def main():
         price_a = df["Adj Close"][pair[0]]
         price_b = df["Adj Close"][pair[1]]
         backtest_pair(price_a, price_b)
+
 
 if __name__ == "__main__":
     main()
