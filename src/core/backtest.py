@@ -16,7 +16,7 @@ def backtest_pair(
     trades = []
     pnl = 0.0
 
-    for date in zscore.index:
+    for date in zscore.index: # Assume we long-short only one share of each (to revisit)
         z = zscore.loc[date]
         pa = price_a.loc[date]
         pb = price_b.loc[date]
@@ -54,7 +54,7 @@ def backtest_pair(
 
 if __name__ == "__main__":
     tickers = load_tickers()
-    df = download_data(tickers, "2022-01-01", "2023-01-01")
+    df = download_data(tickers, "2021-01-01", "2024-01-01")
 
     selected_pairs = select_pairs(df["Adj Close"])
 

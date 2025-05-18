@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 
 def select_pairs(
-    price_df: pd.DataFrame, corr_threshold: float = 0.85, max_pairs: int = 10
+    price_df: pd.DataFrame, corr_threshold: float = 0.6, max_pairs: int = 10
 ) -> List[Tuple[str, str, float]]:
     """
     Identify top cointegrated stock pairs with high correlation.
