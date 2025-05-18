@@ -10,7 +10,7 @@ setup:
 	$(PIP) install -e .
 
 run:
-	python3 -m src.core.backtest	
+	python3 -m src.main
 
 test:
 	black .
