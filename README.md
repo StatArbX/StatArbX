@@ -161,11 +161,3 @@ StatArbX/
 
 ---
 
-📬 Feel free to fork, contribute, or raise issues!
-
-```
-
----
-
-Let me know if you'd like this split into sections in `docs/` or want a badge header (e.g., license, build status).
-```
