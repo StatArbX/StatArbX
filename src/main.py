@@ -25,7 +25,7 @@ def main():
     if not selected_pairs:
         print("[WARN] No pairs found. Try adjusting thresholds.")
         return
-    
+
     # === Backtest on test data ===
     for pair in selected_pairs:
         print(f"Backtesting pair: {pair[0]} and {pair[1]}")
