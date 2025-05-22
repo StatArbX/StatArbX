@@ -1,11 +1,14 @@
 README.md
 setup.py
 src/core/__init__.py
+src/core/backtest.py
+src/core/calc_spread.py
 src/core/data_loader.py
 src/core/pair_selector.py
 src/statarbx.egg-info/PKG-INFO
 src/statarbx.egg-info/SOURCES.txt
 src/statarbx.egg-info/dependency_links.txt
 src/statarbx.egg-info/top_level.txt
+tests/test_calc_spread.py
 tests/test_data_loader.py
 tests/test_pair_selector.py
