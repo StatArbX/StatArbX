@@ -27,8 +27,9 @@ class Backtester:
                 elif z < -entry_z:
                     self.execution.enter(1, pa, pb)  # LONG A, SHORT B
             else:
-                if (self.execution.position == -1 and z < exit_z) or \
-                   (self.execution.position == 1 and z > exit_z):
+                if (self.execution.position == -1 and z < exit_z) or (
+                    self.execution.position == 1 and z > exit_z
+                ):
                     self.execution.exit(pa, pb)
 
         trades = self.execution.get_trade_log()
@@ -38,6 +39,8 @@ class Backtester:
         print(f"Total PnL: {pnl:.2f}")
         if trades:
             print(f"Avg PnL per Trade: {pnl / len(trades):.2f}")
-            print(f"Win Rate: {sum(1 for t in trades if t > 0) / len(trades) * 100:.2f}%")
+            print(
+                f"Win Rate: {sum(1 for t in trades if t > 0) / len(trades) * 100:.2f}%"
+            )
 
         return trades
