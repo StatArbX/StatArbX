@@ -10,7 +10,7 @@ setup:
 	$(PIP) install -e .
 
 run:
-	python3 -m src.main
+	PYTHONPATH=src $(PYTHON) src/main.py
 
 test:
 	black .
@@ -19,6 +19,9 @@ test:
 
 backtest:
 	PYTHONPATH=src $(PYTHON) src/core/backtest.py
+
+plot:
+	PYTHONPATH=src $(PYTHON) src/utils/plot_trades.py
 
 freeze:
 	$(PIP) freeze > requirements.txt
