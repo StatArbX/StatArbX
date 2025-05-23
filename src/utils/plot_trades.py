@@ -1,13 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from core.data_loader import load_tickers, download_data
-from core.calc_spread import calculate_spread_and_thresholds
+from core.data_loader import DataLoader
+from core.calc_spread import SignalGenerator
 
 
 def plot_trades(
     price_a: pd.Series, price_b: pd.Series, entry_z: float = 2.0, exit_z: float = 0.0
 ):
-    result = calculate_spread_and_thresholds(price_a, price_b)
+    signal_gen = SignalGenerator(price_a, price_b)
+    result = signal_gen.calculate_spread_and_thresholds()
     zscore = result["zscore"]
 
     position = 0
@@ -118,9 +119,10 @@ def plot_trades(
 
 
 if __name__ == "__main__":
-    tickers = load_tickers()
-    df = download_data(tickers, "2022-01-01", "2024-01-01")
-    price_a = df["Adj Close"]["MA"]
-    price_b = df["Adj Close"]["V"]
+    loader = DataLoader()
+    tickers = loader.load_tickers()
+    df = loader.download_data(tickers, "2022-01-01", "2024-01-01")
+    price_a = df["Adj Close"]["AMD"]
+    price_b = df["Adj Close"]["MSFT"]
 
     plot_trades(price_a, price_b, entry_z=2.0, exit_z=0.0)
