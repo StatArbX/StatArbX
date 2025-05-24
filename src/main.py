@@ -8,7 +8,7 @@ def main():
     # === Load tickers and data ===
     loader = DataLoader()
     tickers = loader.load_tickers()
-    df = loader.download_data(tickers, "2021-01-01", "2024-01-01")
+    df = loader.download_data(tickers, "2021-01-01", "2025-01-01")
 
     # === Split into train/test ===
     train_df = df.loc["2021-01-01":"2023-01-01"]
