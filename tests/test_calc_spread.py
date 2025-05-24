@@ -1,16 +1,12 @@
 import pandas as pd
-from core.data_loader import DataLoader
 from core.calc_spread import SignalGenerator
 
 
 def test_spread_calculation():
-    tickers = ["AAPL", "MSFT"]
-    start_date = "2022-01-01"
-    end_date = "2023-01-01"
 
-    # Load price data using DataLoader class
-    loader = DataLoader()
-    df = loader.download_data(tickers, start_date, end_date, use_cache=True)
+    df = pd.read_csv(
+        "data/test/tickers_2021_2024.csv", header=[0, 1], index_col=2, parse_dates=[0]
+    )
 
     price_a = df["Adj Close"]["AAPL"]
     price_b = df["Adj Close"]["MSFT"]
