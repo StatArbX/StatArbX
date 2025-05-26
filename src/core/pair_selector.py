@@ -20,7 +20,7 @@ class PairSelector:
         use_cache: bool = True,
     ) -> List[Tuple[str, str, float]]:
         tickers = list(self.price_df.columns)
-        returns = self.price_df.pct_change().dropna()
+        returns = self.price_df.pct_change(fill_method=None).dropna()
         corr_matrix = returns.corr()
 
         candidate_pairs = []
