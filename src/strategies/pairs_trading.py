@@ -65,6 +65,7 @@ class PairsTrading(Strategy):
             trades.extend(self.execution_engine.get_trade_log())
             pnl = self.execution_engine.compute_pnl()
 
+            print(f"Ticker Pair: {ticker_a} - {ticker_b}")
             print(f"Total Trades: {len(trades)}")
             print(f"Total PnL: {pnl:.2f}")
             if trades:
