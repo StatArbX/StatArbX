@@ -41,6 +41,7 @@ class PairsTrading(Strategy):
             signal_generator = SignalGenerator(price_a, price_b)
             signal_data = signal_generator.calculate_spread_and_thresholds()
             zscore = signal_data["zscore"]
+            beta = signal_data["beta"]
 
             for date in test_data.index:
                 pa = price_a.loc[date]
@@ -53,9 +54,13 @@ class PairsTrading(Strategy):
 
                 if not self.execution_engine.is_in_position():
                     if z > self.entry_z:
-                        self.execution_engine.enter(-1, pa, pb)
+                        self.execution_engine.enter(
+                            -1, pa, pb, beta
+                        )  # Short spread: short A, long βB
                     elif z < -self.entry_z:
-                        self.execution_engine.enter(1, pa, pb)
+                        self.execution_engine.enter(
+                            1, pa, pb, beta
+                        )  # Long spread: long A, short βB
                 else:
                     if (self.execution_engine.position == -1 and z < self.exit_z) or (
                         self.execution_engine.position == 1 and z > self.exit_z

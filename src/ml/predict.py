@@ -13,7 +13,7 @@ def predict_top_pairs(model, price_df, pairs, top_n=5):
         try:
             features = extract_features(fa, fb)
             feature_matrix.append((a, b, features))
-        except:
+        except Exception:
             continue
 
     X = np.vstack([f for _, _, f in feature_matrix])
