@@ -28,11 +28,7 @@ To develop a minimum viable product (MVP) that:
    - Train a regression model using historical pair features and resulting PnL
    - Predict expected profitability scores for each pair
    - Retain only top-scoring pairs for backtesting
-   - Current model: RandomForestRegressor using features like:
-	   •	Correlation
-	   •	Cointegration p-value
-	   •	Mean half-life
-	   •	Price ratio volatility
+   - Current model: RandomForestRegressor using features like: Correlation, Cointegration p-value, Mean half-life, Price ratio volatility
 
 4. **Spread Computation**
    - Use linear regression to compute spread between each pair
