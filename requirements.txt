@@ -1,3 +1,8 @@
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.2
+aiosignal==1.3.2
+alpha_vantage==3.0.0
+attrs==25.3.0
 beautifulsoup4==4.13.4
 black==25.1.0
 certifi==2025.4.26
@@ -10,11 +15,14 @@ cycler==0.12.1
 flake8==7.2.0
 fonttools==4.58.0
 frozendict==2.4.6
+frozenlist==1.6.0
 idna==3.10
 iniconfig==2.1.0
+joblib==1.5.1
 kiwisolver==1.4.8
 matplotlib==3.10.3
 mccabe==0.7.0
+multidict==6.4.4
 multitasking==0.0.11
 mypy_extensions==1.1.0
 numpy==2.2.5
@@ -26,6 +34,7 @@ peewee==3.18.1
 pillow==11.2.1
 platformdirs==4.3.8
 pluggy==1.6.0
+propcache==0.3.1
 protobuf==6.31.0
 pycodestyle==2.13.0
 pycparser==2.22
@@ -36,16 +45,17 @@ python-dateutil==2.9.0.post0
 pytz==2025.2
 requests==2.32.3
 ruff==0.11.10
+scikit-learn==1.6.1
 scipy==1.15.3
+setuptools==80.7.1
 six==1.17.0
 soupsieve==2.7
--e git+https://github.com/StatArbX/StatArbX.git@fbb4d85c5d9a02e43fc9af90debdddbdb513c7cb#egg=statarbx
+-e git+https://github.com/StatArbX/StatArbX.git@6ff23f0315e2355e8e34215793a1c9a50995ac7d#egg=statarbx
 statsmodels==0.14.4
+threadpoolctl==3.6.0
 typing_extensions==4.13.2
 tzdata==2025.2
 urllib3==2.4.0
 websockets==15.0.1
+yarl==1.20.0
 yfinance==0.2.61
-setuptools>=68.0.0
-scikit-learn>=1.6.1
-
