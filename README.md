@@ -24,12 +24,22 @@ To develop a minimum viable product (MVP) that:
    - Identify candidate stock pairs based on correlation and cointegration
    - Filter for statistically significant relationships
 
-3. **Spread Computation**
+3. **ML-Based Profitability Scoring**
+   - Train a regression model using historical pair features and resulting PnL
+   - Predict expected profitability scores for each pair
+   - Retain only top-scoring pairs for backtesting
+   - Current model: RandomForestRegressor using features like:
+	   •	Correlation
+	   •	Cointegration p-value
+	   •	Mean half-life
+	   •	Price ratio volatility
+
+4. **Spread Computation**
    - Use linear regression to compute spread between each pair
    - Calculate Z-score for identifying trading opportunities
    - Define entry and exit thresholds
 
-4. **Backtesting Engine**
+5. **Backtesting Engine**
    - Simulate trades based on Z-score triggers
    - Track PnL, Sharpe ratio, drawdowns, and win rate
    - Visualize price charts, spreads, and trade points
@@ -72,9 +82,14 @@ This will:
 ```bash
 make run
 ```
+This will:
 
-> Runs the strategy (once `src/main.py` is implemented).
-
+* Executes the full pipeline:
+	*	Load data
+	*	Select pairs
+	*	Score using ML
+	*	Backtest top pairs
+	*	Output metrics and charts
 ---
 
 ## 🧪 Running Backtesting
